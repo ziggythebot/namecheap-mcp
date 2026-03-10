@@ -28,11 +28,16 @@ Create `.env`:
 
 ```env
 NAMECHEAP_API_USER=your_username
-NAMECHEAP_API_KEY=your_api_key
+NAMECHEAP_API_KEY=your_api_key_from_dashboard
 NAMECHEAP_USERNAME=your_username
-NAMECHEAP_CLIENT_IP=your_ip_address
+NAMECHEAP_CLIENT_IP=your_public_ip
 NAMECHEAP_SANDBOX=false  # Set to true for testing
 ```
+
+**Important:**
+- `NAMECHEAP_API_KEY` is NOT your login password - it's the long hex key from API Access page
+- `NAMECHEAP_CLIENT_IP` is your public IP (run `curl -4 ifconfig.me` to get it)
+- API changes can take 5-10 minutes to propagate after enabling
 
 ## Usage
 
