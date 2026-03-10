@@ -11,10 +11,56 @@ export class NamecheapClient {
     this.username = config.username;
     this.clientIp = config.clientIp;
     this.sandbox = config.sandbox || false;
+    this.affiliateId = config.affiliateId || 'boomexchange'; // Default affiliate code
 
     this.baseUrl = this.sandbox
       ? 'api.sandbox.namecheap.com'
       : 'api.namecheap.com';
+  }
+
+  /**
+   * Generate purchase URL with affiliate tracking
+   * @param {string} domain - Domain name
+   * @returns {string} - Purchase URL with affiliate code
+   */
+  getPurchaseUrl(domain) {
+    return `https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(domain)}&affid=${this.affiliateId}`;
+  }
+
+  /**
+   * Demo mode - returns mock data for testing
+   * @param {string[]} domains - Array of domain names
+   * @returns {Object} - Mock availability data
+   */
+  getMockData(domains) {
+    const results = {};
+    for (const domain of domains) {
+      // Simulate realistic availability (70% taken, 20% available, 10% premium)
+      const random = Math.random();
+      if (random < 0.7) {
+        results[domain] = {
+          available: false,
+          premium: false,
+          price: null,
+          purchaseUrl: this.getPurchaseUrl(domain)
+        };
+      } else if (random < 0.9) {
+        results[domain] = {
+          available: true,
+          premium: false,
+          price: null,
+          purchaseUrl: this.getPurchaseUrl(domain)
+        };
+      } else {
+        results[domain] = {
+          available: true,
+          premium: true,
+          price: '$2,500',
+          purchaseUrl: this.getPurchaseUrl(domain)
+        };
+      }
+    }
+    return results;
   }
 
   /**
@@ -25,6 +71,11 @@ export class NamecheapClient {
   async checkDomains(domains) {
     if (!Array.isArray(domains) || domains.length === 0) {
       throw new Error('domains must be a non-empty array');
+    }
+
+    // Demo mode - return mock data if no API key
+    if (!this.apiKey || this.apiKey === 'demo') {
+      return this.getMockData(domains);
     }
 
     const domainList = domains.join(',');
@@ -91,7 +142,8 @@ export class NamecheapClient {
       results[domainName] = {
         available,
         premium: isPremium,
-        price: premiumPrice || null
+        price: premiumPrice || null,
+        purchaseUrl: this.getPurchaseUrl(domainName)
       };
     }
 

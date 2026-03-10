@@ -100,9 +100,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       for (const [domain, data] of Object.entries(results)) {
         if (data.available) {
           if (data.premium) {
-            premium.push(`${domain} (Premium: ${data.price || 'Contact for pricing'})`);
+            premium.push({ domain, data });
           } else {
-            available.push(domain);
+            available.push({ domain, data });
           }
         } else {
           taken.push(domain);
@@ -113,13 +113,17 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       if (available.length > 0) {
         output += '## ✅ Available\n';
-        available.forEach(d => output += `- ${d}\n`);
+        available.forEach(({ domain, data }) => {
+          output += `- **${domain}** — [Buy now](${data.purchaseUrl})\n`;
+        });
         output += '\n';
       }
 
       if (premium.length > 0) {
         output += '## 💎 Available (Premium)\n';
-        premium.forEach(d => output += `- ${d}\n`);
+        premium.forEach(({ domain, data }) => {
+          output += `- **${domain}** (${data.price || 'Contact for pricing'}) — [Buy now](${data.purchaseUrl})\n`;
+        });
         output += '\n';
       }
 
