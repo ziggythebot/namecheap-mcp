@@ -24,7 +24,17 @@ export class NamecheapClient {
    * @returns {string} - Purchase URL with affiliate code
    */
   getPurchaseUrl(domain) {
-    return `https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(domain)}&affid=${this.affiliateId}`;
+    // Impact affiliate tracking format
+    // Uses utm_campaign from Impact dashboard + standard Namecheap params
+    const params = new URLSearchParams({
+      domain: domain,
+      afsrc: '1',
+      utm_source: 'IR',
+      utm_medium: 'Affiliate',
+      utm_campaign: this.affiliateId || '7069952',
+      affnetwork: 'ir'
+    });
+    return `https://www.namecheap.com/domains/registration/results/?${params.toString()}`;
   }
 
   /**

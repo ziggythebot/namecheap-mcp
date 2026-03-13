@@ -33,7 +33,8 @@ const namecheap = new NamecheapClient({
   apiKey: process.env.NAMECHEAP_API_KEY,
   username: process.env.NAMECHEAP_USERNAME,
   clientIp: process.env.NAMECHEAP_CLIENT_IP,
-  sandbox: process.env.NAMECHEAP_SANDBOX === 'true'
+  sandbox: process.env.NAMECHEAP_SANDBOX === 'true',
+  affiliateId: process.env.NAMECHEAP_AFFILIATE_ID
 });
 
 // Create MCP server
