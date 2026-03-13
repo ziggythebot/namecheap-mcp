@@ -1,7 +1,7 @@
 # Namecheap MCP — Project Status
 
 **Last Updated:** 2026-03-13
-**Status:** Production API testing pending domain purchase
+**Status:** Affiliate integrated, ready for production API testing
 
 ---
 
@@ -19,8 +19,9 @@
 - ✅ Sandbox tested and working
 
 ### What's Pending
-- [ ] Production API testing (requires $50 spending threshold)
-- [ ] Domain purchase to unlock production API
+- [ ] Enable API on existing Namecheap account (dandare)
+- [ ] Get API key from Namecheap dashboard
+- [ ] Production API testing
 - [ ] Demo video recording
 - [ ] ClawHub submission
 - [ ] Marketing campaign launch
@@ -29,7 +30,17 @@
 
 ## Namecheap Communication History
 
-### March 13, 2026 — ✅ API + Affiliate CONFIRMED
+### March 13, 2026 (Evening) — ✅ Affiliate Integrated
+
+**Affiliate contract approved in Impact:**
+- Campaign ID: 7069952
+- Tracking parameters integrated into purchase URLs
+- Format: `utm_campaign=7069952&afsrc=1&utm_source=IR&utm_medium=Affiliate&affnetwork=ir`
+- Committed to repo: commit 8b250e9
+
+**Decision:** Use existing Namecheap account (dandare) for API instead of buying new domain.
+
+### March 13, 2026 (Afternoon) — ✅ API + Affiliate CONFIRMED
 
 **Their question:**
 > Could you please confirm which model you are planning to use for your tool?
