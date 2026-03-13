@@ -8,34 +8,52 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import dotenv from 'dotenv';
 import { NamecheapClient } from './namecheap-client.js';
+import { BatchitClient } from './batchit-client.js';
 
 // Load environment variables
 dotenv.config();
 
-// Validate required environment variables
-const requiredEnvVars = [
-  'NAMECHEAP_API_USER',
-  'NAMECHEAP_API_KEY',
-  'NAMECHEAP_USERNAME',
-  'NAMECHEAP_CLIENT_IP'
-];
+// Choose client based on configuration
+let domainClient;
+const useBatchit = !!process.env.BATCHIT_API_URL;
 
-for (const envVar of requiredEnvVars) {
-  if (!process.env[envVar]) {
-    console.error(`Error: ${envVar} is required in .env file`);
-    process.exit(1);
+if (useBatchit) {
+  // Use Batchit hosted API (zero setup for users)
+  console.log('Using Batchit hosted API');
+  domainClient = new BatchitClient({
+    apiUrl: process.env.BATCHIT_API_URL
+  });
+} else {
+  // Use direct Namecheap API (requires credentials)
+  console.log('Using direct Namecheap API');
+
+  const requiredEnvVars = [
+    'NAMECHEAP_API_USER',
+    'NAMECHEAP_API_KEY',
+    'NAMECHEAP_USERNAME',
+    'NAMECHEAP_CLIENT_IP'
+  ];
+
+  for (const envVar of requiredEnvVars) {
+    if (!process.env[envVar]) {
+      console.error(`Error: ${envVar} is required in .env file`);
+      console.error(`Alternatively, set BATCHIT_API_URL to use hosted API`);
+      process.exit(1);
+    }
   }
+
+  domainClient = new NamecheapClient({
+    apiUser: process.env.NAMECHEAP_API_USER,
+    apiKey: process.env.NAMECHEAP_API_KEY,
+    username: process.env.NAMECHEAP_USERNAME,
+    clientIp: process.env.NAMECHEAP_CLIENT_IP,
+    sandbox: process.env.NAMECHEAP_SANDBOX === 'true',
+    affiliateId: process.env.NAMECHEAP_AFFILIATE_ID
+  });
 }
 
-// Initialize Namecheap client
-const namecheap = new NamecheapClient({
-  apiUser: process.env.NAMECHEAP_API_USER,
-  apiKey: process.env.NAMECHEAP_API_KEY,
-  username: process.env.NAMECHEAP_USERNAME,
-  clientIp: process.env.NAMECHEAP_CLIENT_IP,
-  sandbox: process.env.NAMECHEAP_SANDBOX === 'true',
-  affiliateId: process.env.NAMECHEAP_AFFILIATE_ID
-});
+// Alias for backwards compatibility
+const namecheap = domainClient;
 
 // Create MCP server
 const server = new Server(
