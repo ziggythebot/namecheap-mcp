@@ -1,44 +1,28 @@
 # Namecheap MCP
 
-> Check domain availability across 600+ TLDs without leaving Claude
+> Check domain availability across 600+ TLDs on Namecheap without leaving Claude
 
-Stop tab-switching between Claude and Namecheap. Ask Claude to check domains conversationally, get instant results, and continue brainstorming.
-
-```
-You: "I'm building a restaurant menu app. Help me find a domain."
-
-Claude: *checks 20 domains in 2 seconds*
-✅ menusaas.com - available ($12.98/year)
-✅ restaurantmenu.io - available ($34.98/year)
-❌ menu.app - taken
-✅ getmenu.ai - available ($89.98/year)
-```
-
-**Perfect for:** Startup naming sessions · Domain research · Agency client work · Content creation
+Ask Claude to check domains conversationally and get instant results with purchase links.
 
 ---
 
-## Why Use This
+## Setup (3 minutes)
 
-**Before:** Brainstorm with Claude → Tab to Namecheap → Type domain → Check → Back to Claude → Repeat 20 times → 30 minutes wasted
+### 1. Get Your IP Address
 
-**After:** "Check if these 20 domains are available" → Instant results → Keep brainstorming
+Ask Claude: **"What's my IP address?"**
 
-### What You Get
+Claude will tell you. Copy it.
 
-- **600+ TLDs** — .com, .io, .ai, .xyz, .tech, and 595 more
-- **Batch checking** — Check 100 domains in one call
-- **Zero setup** — No API keys needed (uses hosted backend)
-- **Premium pricing** — See costs for premium domains upfront
-- **Purchase links** — One-click to Namecheap checkout
+### 2. Enable Namecheap API
 
----
+1. Log into https://www.namecheap.com
+2. Go to **Profile → Tools → Namecheap API Access**
+3. Click **"Enable API Access"**
+4. **Whitelist your IP address** (the one Claude gave you)
+5. Copy your **API key**
 
-## Quick Start
-
-**No installation needed!** Just add to your Claude Code settings.
-
-### 1. Add to Claude Code Settings
+### 3. Add to Claude Code
 
 Open `~/.claude/settings.json` and add:
 
@@ -49,249 +33,73 @@ Open `~/.claude/settings.json` and add:
       "command": "npx",
       "args": ["-y", "@birdmania1/namecheap-mcp"],
       "env": {
-        "BATCHIT_API_URL": "https://transcripts-scheme-database-yale.trycloudflare.com"
+        "NAMECHEAP_API_USER": "your_username",
+        "NAMECHEAP_API_KEY": "your_api_key",
+        "NAMECHEAP_USERNAME": "your_username",
+        "NAMECHEAP_CLIENT_IP": "your_ip_address"
       }
     }
   }
 }
 ```
 
-**That's it!** The `-y` flag tells npx to auto-download the package. No manual install required.
+Replace with your actual values.
 
-### 2. Restart Claude Code
+### 4. Restart Claude Code
 
-### 3. Try It
+### 5. Try It
 
-```
-Check if retroweb.com, retroweb.io, and retroweb.ai are available
-```
+Ask Claude: **"Check if example.com and startup.io are available"**
 
-Claude calls the MCP server and returns results instantly.
+You'll get instant results with prices and purchase links!
 
 ---
 
-## Use Cases
+## What You Can Do
 
-### Startup Naming
-
+**Find startup names:**
 ```
-You: "I'm building a SaaS for restaurant menus. Help me brainstorm domains."
-
-Claude: Let me suggest some options and check availability...
-✅ menusaas.com
-✅ restaurantmenu.io
-✅ tablemenu.app
-❌ menu.com (taken)
-✅ getmenu.co
-
-Want me to check more variations?
+"I'm building a SaaS for restaurants. Help me find a domain."
 ```
 
-### Batch Checking
-
+**Check specific domains:**
 ```
-You: Check these domains:
-- myapp.com
-- myapp.io
-- myapp.ai
-- myapp.co
-- myapp.net
-- getmyapp.com
-- trymyapp.com
-- myapp.app
-
-Claude: *checks all 8 at once*
-✅ myapp.io - available
-✅ getmyapp.com - available
-❌ myapp.com - taken
-...
+"Check if myapp.com, myapp.io, and myapp.ai are available"
 ```
 
-### Finding Alternatives
-
+**Find alternatives:**
 ```
-You: "example.com is taken. Find me 10 similar available domains."
-
-Claude: *generates and checks variations*
-✅ getexample.com
-✅ tryexample.com
-✅ example.io
-✅ example.app
-❌ examples.com (taken)
-...
+"example.com is taken. Find me similar domains."
 ```
 
-### Domain Research
-
+**Research TLDs:**
 ```
-You: "Check if any single-word tech domains are available in .ai"
-
-Claude: *batch checks common tech terms*
-✅ compiler.ai - available ($89.98/year)
-❌ code.ai - premium domain ($15,000)
-✅ deploy.ai - available ($89.98/year)
-...
+"Check if any single-word domains are available in .ai"
 ```
 
 ---
 
-## How It Works
+## Features
 
-**Architecture:**
-
-```
-Claude MCP → Hosted Backend → Namecheap API → Results
-```
-
-1. You ask Claude to check domains (natural language)
-2. Claude calls the Namecheap MCP tool
-3. MCP hits the hosted backend (no API keys needed)
-4. Backend queries Namecheap API in real-time
-5. Results return with availability + pricing + purchase links
-
-**Why a hosted backend?**
-
-Zero setup. You don't need Namecheap API credentials, IP whitelisting, or configuration. Just install and use.
+- **600+ TLDs** — .com, .io, .ai, .xyz, .tech, and more
+- **Batch checking** — Check 100 domains at once
+- **Instant pricing** — See costs upfront
+- **Purchase links** — One-click to buy
+- **Secure** — Direct API, no proxy server
 
 ---
 
-## Response Format
+## Troubleshooting
 
-The MCP returns structured results Claude can format for you:
+**"Invalid request IP" error:**
+- Your IP changed. Update it in Namecheap's whitelist.
+- Ask Claude "What's my IP?" to get your current IP.
 
-**Available Domains:**
-- Domain name
-- Price per year
-- Direct purchase link
+**"API access not enabled":**
+- Enable it in your Namecheap account settings.
 
-**Taken Domains:**
-- Domain name
-- Availability status
-
-**Premium Domains:**
-- Domain name
-- Premium price
-- Marketplace link
-
----
-
-## Coverage
-
-**600+ TLDs including:**
-
-| Popular | Developer | Regional | Creative |
-|---------|-----------|----------|----------|
-| .com | .io | .uk | .xyz |
-| .net | .dev | .eu | .online |
-| .org | .ai | .ca | .store |
-| .co | .app | .de | .tech |
-| .me | .tech | .fr | .fun |
-
-[See full TLD list →](./TLD-CATEGORIES.md)
-
----
-
-## FAQ
-
-**Do I need a Namecheap account?**
-
-No — anyone can check availability. You only need a Namecheap account when you're ready to buy.
-
-**Is this official?**
-
-This is a community tool using Namecheap's public API. Purchase links go directly to Namecheap.com.
-
-**What about rate limits?**
-
-The hosted backend handles rate limiting. Normal usage (checking dozens of domains per day) won't hit limits.
-
-**Can I use my own Namecheap API key?**
-
-Yes. Set these env vars instead of `BATCHIT_API_URL`:
-```json
-{
-  "NAMECHEAP_API_USER": "your_username",
-  "NAMECHEAP_API_KEY": "your_api_key",
-  "NAMECHEAP_USERNAME": "your_username",
-  "NAMECHEAP_CLIENT_IP": "your_ip"
-}
-```
-
-**Is it secure?**
-
-The hosted backend only checks availability — it can't access your Namecheap account or buy domains. Purchases happen directly on Namecheap.com.
-
-**What about privacy?**
-
-Domain searches are not logged. We don't track what you check.
-
----
-
-## Advanced Usage
-
-### Install from Source
-
-For development or customization:
-
-```bash
-git clone https://github.com/ziggythebot/namecheap-mcp.git
-cd namecheap-mcp
-npm install
-```
-
-Then in `~/.claude/settings.json`:
-
-```json
-{
-  "mcpServers": {
-    "namecheap": {
-      "command": "node",
-      "args": ["/absolute/path/to/namecheap-mcp/index.js"],
-      "env": {
-        "BATCHIT_API_URL": "https://transcripts-scheme-database-yale.trycloudflare.com"
-      }
-    }
-  }
-}
-```
-
-### Self-Hosted Backend
-
-Want to run your own backend? See [DEPLOYMENT_SUMMARY.md](./DEPLOYMENT_SUMMARY.md)
-
-Requirements:
-- Namecheap API credentials
-- Static IP (for Namecheap whitelist)
-- Node.js server
-
-### Batch API
-
-Check multiple domains programmatically:
-
-```bash
-curl -X POST https://transcripts-scheme-database-yale.trycloudflare.com/api/namecheap/check-domains \
-  -H "Content-Type: application/json" \
-  -d '{"domains": ["example.com", "test.io"]}'
-```
-
----
-
-## Contributing
-
-Found a bug? Have a feature request? PRs welcome.
-
-**Common improvements:**
-- Additional TLD support
-- Better error handling
-- Caching for faster repeat checks
-
----
-
-## Credits
-
-Built for the [Claude AI](https://claude.ai) and [MCP](https://modelcontextprotocol.io) community.
-
-Uses [Namecheap API](https://www.namecheap.com/support/api/intro/) for domain data.
+**Not showing up in Claude:**
+- Restart Claude Code after editing settings.json.
 
 ---
 
@@ -299,16 +107,4 @@ Uses [Namecheap API](https://www.namecheap.com/support/api/intro/) for domain da
 
 MIT
 
----
-
-## Related Projects
-
-- **[Claude Code](https://claude.ai/code)** — AI coding assistant (what this runs on)
-- **[MCP Servers](https://github.com/modelcontextprotocol/servers)** — Official MCP server examples
-- **[GhostClaw](https://github.com/qwibitai/ghostclaw)** — Personal AI assistant with MCP support
-
----
-
-**Made with ☕ by developers tired of tab-switching**
-
-[⭐ Star this repo](https://github.com/ziggythebot/namecheap-mcp) if you find it useful
+**Made by developers tired of tab-switching**
