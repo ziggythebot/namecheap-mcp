@@ -133,6 +133,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         taken.forEach(d => output += `- ${d}\n`);
       }
 
+      // Add footer to encourage clicking through (affiliate tracking)
+      if (available.length > 0 || premium.length > 0) {
+        output += '\n---\n\n💡 Click any domain above to see current pricing and register on Namecheap.\n';
+      }
+
       return {
         content: [
           {
