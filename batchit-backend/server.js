@@ -2,10 +2,7 @@
 
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
-import { NamecheapClient } from '../namecheap-client.js';
-
-dotenv.config({ path: '../.env' });
+import { NamecheapClient } from './namecheap-client.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
