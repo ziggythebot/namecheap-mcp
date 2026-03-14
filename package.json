@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "node test.js"
+    "test": "node test.js",
+    "postinstall": "node -e \"console.log('\\n✅ Namecheap MCP installed!\\n\\nNext steps:\\n1. Add to ~/.claude/settings.json (see README)\\n2. Restart Claude Code\\n3. Ask Claude: \\\"Check if example.com is available\\\"\\n\\nDocs: https://github.com/ziggythebot/namecheap-mcp\\n')\""
   },
   "keywords": [
     "mcp",

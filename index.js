@@ -187,7 +187,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error('Namecheap MCP server running on stdio');
+  console.error('✅ Namecheap MCP ready - check domain availability across 600+ TLDs');
 }
 
 main().catch((error) => {
