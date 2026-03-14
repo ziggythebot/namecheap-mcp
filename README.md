@@ -36,12 +36,10 @@ Claude: *checks 20 domains in 2 seconds*
 
 ## Quick Start
 
-### 1. Install
+### 1. Install via npm
 
 ```bash
-git clone https://github.com/ziggythebot/namecheap-mcp.git
-cd namecheap-mcp
-npm install
+npm install -g namecheap-mcp
 ```
 
 ### 2. Configure Claude Code
@@ -52,8 +50,8 @@ Add to `~/.claude/settings.json`:
 {
   "mcpServers": {
     "namecheap": {
-      "command": "node",
-      "args": ["/absolute/path/to/namecheap-mcp/index.js"],
+      "command": "npx",
+      "args": ["-y", "namecheap-mcp"],
       "env": {
         "BATCHIT_API_URL": "https://transcripts-scheme-database-yale.trycloudflare.com"
       }
@@ -61,8 +59,6 @@ Add to `~/.claude/settings.json`:
   }
 }
 ```
-
-**Replace `/absolute/path/to/` with your actual path** (e.g., `/Users/yourname/namecheap-mcp/index.js`)
 
 ### 3. Restart Claude Code
 
@@ -234,6 +230,32 @@ Domain searches are not logged. We don't track what you check.
 ---
 
 ## Advanced Usage
+
+### Install from Source
+
+For development or customization:
+
+```bash
+git clone https://github.com/ziggythebot/namecheap-mcp.git
+cd namecheap-mcp
+npm install
+```
+
+Then in `~/.claude/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "namecheap": {
+      "command": "node",
+      "args": ["/absolute/path/to/namecheap-mcp/index.js"],
+      "env": {
+        "BATCHIT_API_URL": "https://transcripts-scheme-database-yale.trycloudflare.com"
+      }
+    }
+  }
+}
+```
 
 ### Self-Hosted Backend
 

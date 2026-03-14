@@ -1,22 +1,48 @@
 {
   "name": "namecheap-mcp",
   "version": "1.0.0",
-  "description": "MCP server for Namecheap domain availability checking",
+  "description": "Check domain availability across 600+ TLDs without leaving Claude",
   "main": "index.js",
   "type": "module",
+  "bin": {
+    "namecheap-mcp": "./index.js"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "node test.js"
   },
   "keywords": [
     "mcp",
+    "model-context-protocol",
     "namecheap",
     "domain",
     "availability",
-    "dns"
+    "claude",
+    "ai",
+    "domains",
+    "tld",
+    "registrar"
   ],
   "author": "b1rdmania",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ziggythebot/namecheap-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ziggythebot/namecheap-mcp/issues"
+  },
+  "homepage": "https://github.com/ziggythebot/namecheap-mcp#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "index.js",
+    "namecheap-client.js",
+    "batchit-client.js",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^0.5.0",
     "dotenv": "^16.4.5",
