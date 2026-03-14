@@ -18,30 +18,45 @@ npx @birdmania1/namecheap-mcp
 
 ## Setup (3 minutes)
 
-### 1. Get Your IP Address
+Copy-paste these commands to Claude **one at a time** and follow the steps:
 
-Ask Claude: **"Visit https://api.ipify.org and tell me my IP address"**
+---
 
-Claude will fetch it and tell you. Copy it.
+### Step 1: Get Your IP Address
 
-Alternatively, run this in your terminal:
-```bash
-curl -s https://api.ipify.org
+**Say to Claude:**
+```
+Visit https://api.ipify.org and tell me my IP address
 ```
 
-### 2. Enable Namecheap API
+Claude will tell you your IP. **Write it down** - you'll need it in steps 2 and 3.
 
-1. Log into https://www.namecheap.com
-2. Go to **Profile → Tools → Namecheap API Access**
+---
+
+### Step 2: Enable Namecheap API
+
+**Do these steps manually in your browser:**
+
+1. Go to https://www.namecheap.com and log in
+2. Click **Profile (top right) → Tools → Namecheap API Access**
 3. Click **"Enable API Access"**
-4. **Whitelist your IP address** (the one Claude gave you)
-5. Copy your **API key**
+4. Under **Whitelisted IPs**, click **"Add New"** and paste your IP from Step 1
+5. **Copy your API key** - you'll need it in Step 3
 
-### 3. Add Credentials to Claude Code
+---
 
-Open `~/.claude/settings.json` and add this MCP server configuration:
+### Step 3: Configure Claude Code
 
-```json
+**Say to Claude:**
+```
+Add the Namecheap MCP to my settings.json with these credentials:
+- API User: [your namecheap username]
+- API Key: [the key you just copied]
+- Username: [your namecheap username]
+- Client IP: [the IP from step 1]
+
+Use this exact config structure:
+
 {
   "mcpServers": {
     "namecheap": {
@@ -56,22 +71,30 @@ Open `~/.claude/settings.json` and add this MCP server configuration:
     }
   }
 }
+
+Make sure to edit ~/.claude/settings.json (NOT mcp.json or any other file).
 ```
 
-**Replace these values:**
-- `your_username` — Your Namecheap username (appears twice)
-- `your_api_key_here` — The API key from step 2
-- `your.ip.address.here` — The IP address from step 1
+**Important:** Replace the placeholder values with your actual credentials before sending to Claude.
 
-### 4. Restart Claude Code
+---
 
-Fully quit and restart Claude Code for the changes to take effect.
+### Step 4: Restart Claude Code
 
-### 5. Try It
+Fully quit Claude Code (⌘+Q on Mac, Alt+F4 on Windows) and reopen it.
 
-Ask Claude: **"Check if example.com and startup.io are available"**
+---
 
-You'll get instant results with prices and purchase links!
+### Step 5: Test It
+
+**Say to Claude:**
+```
+Check if example.com and startup.io are available
+```
+
+You should get instant results with prices and purchase links!
+
+If it doesn't work, see [Troubleshooting](#troubleshooting) below.
 
 ---
 
