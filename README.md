@@ -36,15 +36,11 @@ Claude: *checks 20 domains in 2 seconds*
 
 ## Quick Start
 
-### 1. Install via npm
+**No installation needed!** Just add to your Claude Code settings.
 
-```bash
-npm install -g @birdmania1/namecheap-mcp
-```
+### 1. Add to Claude Code Settings
 
-### 2. Configure Claude Code
-
-Add to `~/.claude/settings.json`:
+Open `~/.claude/settings.json` and add:
 
 ```json
 {
@@ -60,9 +56,11 @@ Add to `~/.claude/settings.json`:
 }
 ```
 
-### 3. Restart Claude Code
+**That's it!** The `-y` flag tells npx to auto-download the package. No manual install required.
 
-### 4. Try It
+### 2. Restart Claude Code
+
+### 3. Try It
 
 ```
 Check if retroweb.com, retroweb.io, and retroweb.ai are available
