@@ -1,6 +1,6 @@
 {
   "name": "@birdmania1/namecheap-mcp",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Check domain availability across 600+ TLDs without leaving Claude",
   "main": "index.js",
   "type": "module",
@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "node test.js",
-    "postinstall": "node -e \"console.log('\\n✅ Namecheap MCP installed!\\n\\nNext steps:\\n1. Add to ~/.claude/settings.json (see README)\\n2. Restart Claude Code\\n3. Ask Claude: \\\"Check if example.com is available\\\"\\n\\nDocs: https://github.com/ziggythebot/namecheap-mcp\\n')\""
+    "postinstall": "node -e \"console.log('\\n✅ Namecheap MCP installed!\\n\\n⚠️  IMPORTANT: You must configure your Namecheap API credentials.\\n\\nQuick setup:\\n\\n1. Ask Claude: \\\"Visit https://api.ipify.org and tell me my IP address\\\"\\n2. Enable Namecheap API and whitelist that IP\\n   https://www.namecheap.com → Profile → Tools → API Access\\n3. Ask Claude to add credentials to ~/.claude/settings.json\\n\\nFull instructions:\\nhttps://github.com/ziggythebot/namecheap-mcp#readme\\n')\""
   },
   "keywords": [
     "mcp",

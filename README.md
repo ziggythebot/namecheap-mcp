@@ -6,13 +6,28 @@ Ask Claude to check domains conversationally and get instant results with purcha
 
 ---
 
+## Installation
+
+```bash
+npx @birdmania1/namecheap-mcp
+```
+
+**⚠️ IMPORTANT:** After installing, you MUST configure your Namecheap API credentials (see Setup below). The MCP won't work without them.
+
+---
+
 ## Setup (3 minutes)
 
 ### 1. Get Your IP Address
 
-Ask Claude: **"What's my IP address?"**
+Ask Claude: **"Visit https://api.ipify.org and tell me my IP address"**
 
-Claude will tell you. Copy it.
+Claude will fetch it and tell you. Copy it.
+
+Alternatively, run this in your terminal:
+```bash
+curl -s https://api.ipify.org
+```
 
 ### 2. Enable Namecheap API
 
@@ -22,9 +37,9 @@ Claude will tell you. Copy it.
 4. **Whitelist your IP address** (the one Claude gave you)
 5. Copy your **API key**
 
-### 3. Add to Claude Code
+### 3. Add Credentials to Claude Code
 
-Open `~/.claude/settings.json` and add:
+Open `~/.claude/settings.json` and add this MCP server configuration:
 
 ```json
 {
@@ -34,18 +49,23 @@ Open `~/.claude/settings.json` and add:
       "args": ["-y", "@birdmania1/namecheap-mcp"],
       "env": {
         "NAMECHEAP_API_USER": "your_username",
-        "NAMECHEAP_API_KEY": "your_api_key",
+        "NAMECHEAP_API_KEY": "your_api_key_here",
         "NAMECHEAP_USERNAME": "your_username",
-        "NAMECHEAP_CLIENT_IP": "your_ip_address"
+        "NAMECHEAP_CLIENT_IP": "your.ip.address.here"
       }
     }
   }
 }
 ```
 
-Replace with your actual values.
+**Replace these values:**
+- `your_username` — Your Namecheap username (appears twice)
+- `your_api_key_here` — The API key from step 2
+- `your.ip.address.here` — The IP address from step 1
 
 ### 4. Restart Claude Code
+
+Fully quit and restart Claude Code for the changes to take effect.
 
 ### 5. Try It
 
@@ -99,7 +119,9 @@ You'll get instant results with prices and purchase links!
 - Enable it in your Namecheap account settings.
 
 **Not showing up in Claude:**
+- Make sure you edited `~/.claude/settings.json` (NOT `~/.claude/mcp.json` or any other file)
 - Restart Claude Code after editing settings.json.
+- Check that the JSON is valid (no trailing commas, proper nesting)
 
 ---
 
