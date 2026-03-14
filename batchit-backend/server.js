@@ -30,6 +30,20 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Get Railway's outbound IP (for Namecheap whitelist)
+app.get('/detect-ip', async (req, res) => {
+  try {
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    res.json({
+      outboundIP: data.ip,
+      note: 'Add this IP to Namecheap API whitelist'
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Main domain checking endpoint
 app.post('/api/namecheap/check-domains', async (req, res) => {
   try {
