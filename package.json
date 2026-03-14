@@ -1,5 +1,5 @@
 {
-  "name": "@b1rdmania/namecheap-mcp",
+  "name": "@birdmania1/namecheap-mcp",
   "version": "1.0.0",
   "description": "Check domain availability across 600+ TLDs without leaving Claude",
   "main": "index.js",

@@ -39,7 +39,7 @@ Claude: *checks 20 domains in 2 seconds*
 ### 1. Install via npm
 
 ```bash
-npm install -g @b1rdmania/namecheap-mcp
+npm install -g @birdmania1/namecheap-mcp
 ```
 
 ### 2. Configure Claude Code
@@ -51,7 +51,7 @@ Add to `~/.claude/settings.json`:
   "mcpServers": {
     "namecheap": {
       "command": "npx",
-      "args": ["-y", "@b1rdmania/namecheap-mcp"],
+      "args": ["-y", "@birdmania1/namecheap-mcp"],
       "env": {
         "BATCHIT_API_URL": "https://transcripts-scheme-database-yale.trycloudflare.com"
       }
