@@ -1,6 +1,7 @@
 {
   "name": "@birdmania1/namecheap-mcp",
-  "version": "1.1.1",
+  "version": "1.1.2",
+  "mcpName": "io.github.birdmania1/namecheap",
   "description": "Check domain availability across 600+ TLDs without leaving Claude",
   "main": "index.js",
   "type": "module",
