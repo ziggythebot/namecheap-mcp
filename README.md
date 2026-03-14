@@ -49,30 +49,29 @@ Claude will tell you your IP. **Write it down** - you'll need it in steps 2 and 
 
 **Say to Claude:**
 ```
-Add the Namecheap MCP to my settings.json with these credentials:
+Add the Namecheap MCP server to my Claude Code config with these credentials:
 - API User: [your namecheap username]
 - API Key: [the key you just copied]
 - Username: [your namecheap username]
 - Client IP: [the IP from step 1]
 
-Use this exact config structure:
+Use this exact MCP server config:
 
 {
-  "mcpServers": {
-    "namecheap": {
-      "command": "npx",
-      "args": ["-y", "@birdmania1/namecheap-mcp"],
-      "env": {
-        "NAMECHEAP_API_USER": "your_username",
-        "NAMECHEAP_API_KEY": "your_api_key_here",
-        "NAMECHEAP_USERNAME": "your_username",
-        "NAMECHEAP_CLIENT_IP": "your.ip.address.here"
-      }
-    }
+  "command": "npx",
+  "args": ["-y", "@birdmania1/namecheap-mcp"],
+  "env": {
+    "NAMECHEAP_API_USER": "your_username",
+    "NAMECHEAP_API_KEY": "your_api_key_here",
+    "NAMECHEAP_USERNAME": "your_username",
+    "NAMECHEAP_CLIENT_IP": "your.ip.address.here"
   }
 }
 
-Make sure to edit ~/.claude/settings.json (NOT mcp.json or any other file).
+Important:
+1. Add it to the SAME config file where your other MCP servers are (check where perplexity/github/etc are configured)
+2. Make sure "namecheap" only appears in ONE config file (not duplicated across ~/.claude.json, settings.json, or mcp.json)
+3. If you get errors, check for duplicate entries and remove them
 ```
 
 **Important:** Replace the placeholder values with your actual credentials before sending to Claude.
@@ -142,9 +141,11 @@ If it doesn't work, see [Troubleshooting](#troubleshooting) below.
 - Enable it in your Namecheap account settings.
 
 **Not showing up in Claude:**
-- Make sure you edited `~/.claude/settings.json` (NOT `~/.claude/mcp.json` or any other file)
-- Restart Claude Code after editing settings.json.
-- Check that the JSON is valid (no trailing commas, proper nesting)
+- Check for duplicate entries: "namecheap" should only appear in ONE config file
+- Common locations: `~/.claude.json`, `~/.claude/settings.json`, `~/.claude/mcp.json`
+- Remove duplicates, keeping only the one in the file where your other MCPs live
+- Restart Claude Code after editing (full quit and reopen)
+- Verify JSON is valid (no trailing commas, proper nesting)
 
 ---
 
