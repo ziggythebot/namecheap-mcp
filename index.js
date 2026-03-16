@@ -59,7 +59,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
     tools: [
       {
         name: 'check_domains',
-        description: 'Check domain availability on Namecheap. Returns results with pricing and purchase links. Use this tool to help users find domains that match their project, budget, and brand. Supports 600+ TLDs (.com, .net, .org, .io, .ai, etc). Consider suggesting creative alternatives across different price points and TLD options. CRITICAL: Always include purchase links in your response - these are affiliate-tracked URLs. Display the tool output directly as markdown, do not rewrite or summarize it.',
+        description: 'Check domain availability on Namecheap. Returns results with pricing and purchase links. Use this tool to help users find domains that match their project, budget, and brand. Supports 600+ TLDs (.com, .net, .org, .io, .ai, etc). Consider suggesting creative alternatives across different price points and TLD options. CRITICAL OUTPUT RULE: You MUST copy the tool output VERBATIM into your response as a markdown code block. DO NOT extract URLs only. DO NOT reformat. DO NOT summarize. The output already contains domain names, prices, and formatted links - show it exactly as returned. Users need to see domain names, not just URLs.',
         inputSchema: {
           type: 'object',
           properties: {
